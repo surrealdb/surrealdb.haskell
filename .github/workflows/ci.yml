@@ -15,10 +15,10 @@ jobs:
       matrix:
         ghc: ["9.4.8", "9.6.6"]
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4.3.1
 
       - name: Set up GHC and cabal
-        uses: haskell-actions/setup@v2
+        uses: haskell-actions/setup@cd0d9bdd65b20557f41bea4dbe43d0b5fbbfe553 # v2.11.0
         with:
           ghc-version: ${{ matrix.ghc }}
           cabal-version: "3.10"
@@ -30,7 +30,7 @@ jobs:
           "$HOME/.surrealdb/surreal" version || true
 
       - name: Cache
-        uses: actions/cache@v4
+        uses: actions/cache@0057852bfaa89a56745cba8c7296529d2fc39830 # v4.3.0
         with:
           path: |
             ~/.cabal/store
@@ -49,10 +49,10 @@ jobs:
     name: stack
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4.3.1
 
       - name: Set up stack
-        uses: haskell-actions/setup@v2
+        uses: haskell-actions/setup@cd0d9bdd65b20557f41bea4dbe43d0b5fbbfe553 # v2.11.0
         with:
           enable-stack: true
           stack-no-global: true
@@ -63,7 +63,7 @@ jobs:
           echo "SURREAL_BIN=$HOME/.surrealdb/surreal" >> "$GITHUB_ENV"
 
       - name: Cache
-        uses: actions/cache@v4
+        uses: actions/cache@0057852bfaa89a56745cba8c7296529d2fc39830 # v4.3.0
         with:
           path: |
             ~/.stack
