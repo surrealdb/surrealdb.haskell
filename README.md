@@ -1,18 +1,16 @@
 # SurrealDB SDK for Haskell
 
-A Haskell SDK for [SurrealDB](https://surrealdb.com), with feature parity to the
-official JavaScript SDK. It ships two packages:
+A Haskell SDK for [SurrealDB](https://surrealdb.com). It ships two packages:
 
-- **`surrealdb`** is the database client. It speaks both the WebSocket and HTTP
-  transports and both the CBOR (default) and JSON-RPC wire codecs. It covers the
-  full method surface: connection and session management, authentication, CRUD,
-  graph relations, queries with bound variables, live queries, transactions and
-  user defined functions.
+- **`surrealdb`** is the database client. It connects over WebSocket or HTTP and
+  speaks either the CBOR (default) or JSON-RPC wire codec. It supports
+  connection and session management, authentication, CRUD, graph relations,
+  queries with bound variables, live queries, transactions and user defined
+  functions.
 - **`surrealdb-spectron`** is a typed client for SurrealDB's Spectron memory and
-  knowledge platform. It mirrors the official `@surrealdb/spectron` client:
-  `remember`, `recall`, `context`, `reflect`, `forget`, the chat loop and the
-  documents, entities, sessions, lifecycle, traces, principals, scopes and keys
-  namespaces.
+  knowledge platform: store and recall memories (`remember`, `recall`,
+  `context`, `reflect`, `forget`), drive the chat loop, and manage documents,
+  entities, sessions, lifecycle, traces, principals, scopes and keys.
 
 The public API is exposed through a `MonadSurreal` typeclass with a `ReaderT`
 based runner, so it composes with any application monad stack.
