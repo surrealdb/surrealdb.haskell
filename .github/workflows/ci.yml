@@ -26,8 +26,14 @@ jobs:
       - name: Install the surreal binary
         run: |
           curl -sSf https://install.surrealdb.com | sh
-          echo "SURREAL_BIN=$HOME/.surrealdb/surreal" >> "$GITHUB_ENV"
-          "$HOME/.surrealdb/surreal" version || true
+          SURREAL_PATH="$(command -v surreal || true)"
+          for c in "$HOME/.surrealdb/surreal" /usr/local/bin/surreal "$PWD/surreal"; do
+            if [ -z "$SURREAL_PATH" ] && [ -x "$c" ]; then SURREAL_PATH="$c"; fi
+          done
+          test -n "$SURREAL_PATH" || { echo "surreal binary not found after install"; exit 1; }
+          echo "Using surreal at $SURREAL_PATH"
+          "$SURREAL_PATH" version
+          echo "SURREAL_BIN=$SURREAL_PATH" >> "$GITHUB_ENV"
 
       - name: Cache
         uses: actions/cache@0057852bfaa89a56745cba8c7296529d2fc39830 # v4.3.0
@@ -60,7 +66,14 @@ jobs:
       - name: Install the surreal binary
         run: |
           curl -sSf https://install.surrealdb.com | sh
-          echo "SURREAL_BIN=$HOME/.surrealdb/surreal" >> "$GITHUB_ENV"
+          SURREAL_PATH="$(command -v surreal || true)"
+          for c in "$HOME/.surrealdb/surreal" /usr/local/bin/surreal "$PWD/surreal"; do
+            if [ -z "$SURREAL_PATH" ] && [ -x "$c" ]; then SURREAL_PATH="$c"; fi
+          done
+          test -n "$SURREAL_PATH" || { echo "surreal binary not found after install"; exit 1; }
+          echo "Using surreal at $SURREAL_PATH"
+          "$SURREAL_PATH" version
+          echo "SURREAL_BIN=$SURREAL_PATH" >> "$GITHUB_ENV"
 
       - name: Cache
         uses: actions/cache@0057852bfaa89a56745cba8c7296529d2fc39830 # v4.3.0
