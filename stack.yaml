@@ -1,0 +1,11 @@
+# Stack configuration so that stack users are first class alongside cabal.
+# LTS 22 ships GHC 9.6.x, which matches the cabal build matrix.
+resolver: lts-22.43
+
+packages:
+  - surrealdb
+  - surrealdb-spectron
+
+# All dependencies below are available from the resolver snapshot, so no
+# extra-deps are required. Add pins here if you bump to a newer GHC.
+extra-deps: []
