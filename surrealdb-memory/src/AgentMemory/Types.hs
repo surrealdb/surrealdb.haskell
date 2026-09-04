@@ -1,12 +1,12 @@
 {-# LANGUAGE OverloadedStrings #-}
 
--- | Request types, enumerations and the scope selector for the Spectron client.
+-- | Request types, enumerations and the scope selector for the Agent Memory client.
 -- Response bodies are returned as 'Data.Aeson.Value' so the client tracks the
--- evolving Spectron API without locking callers to a fixed schema.
-module Spectron.Types
+-- evolving Agent Memory API without locking callers to a fixed schema.
+module AgentMemory.Types
   ( -- * Options
-    SpectronOptions (..)
-  , defaultSpectronOptions
+    AgentMemoryOptions (..)
+  , defaultAgentMemoryOptions
 
     -- * Scope
   , Scope (..)
@@ -40,8 +40,8 @@ import           Data.Aeson.Types (Pair)
 import           Data.List       (nub)
 import           Data.Text       (Text)
 
--- | Configuration for a Spectron client.
-data SpectronOptions = SpectronOptions
+-- | Configuration for an Agent Memory client.
+data AgentMemoryOptions = AgentMemoryOptions
   { soContext    :: !Text
     -- ^ The context id. Required.
   , soApiKey     :: !Text
@@ -56,8 +56,8 @@ data SpectronOptions = SpectronOptions
 
 -- | Defaults: a thirty second timeout and three retries. The context, api key
 -- and endpoint must be filled in.
-defaultSpectronOptions :: Text -> Text -> Text -> SpectronOptions
-defaultSpectronOptions ctx key endpoint = SpectronOptions
+defaultAgentMemoryOptions :: Text -> Text -> Text -> AgentMemoryOptions
+defaultAgentMemoryOptions ctx key endpoint = AgentMemoryOptions
   { soContext    = ctx
   , soApiKey     = key
   , soEndpoint   = endpoint

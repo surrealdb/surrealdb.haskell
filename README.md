@@ -7,7 +7,7 @@ A Haskell SDK for [SurrealDB](https://surrealdb.com). It ships two packages:
   connection and session management, authentication, CRUD, graph relations,
   queries with bound variables, live queries, transactions and user defined
   functions.
-- **`surrealdb-spectron`** is a typed client for SurrealDB's Spectron memory and
+- **`surrealdb-memory`** is a typed client for SurrealDB's Agent Memory
   knowledge platform: store and recall memories (`remember`, `recall`,
   `context`, `reflect`, `forget`), drive the chat loop, and manage documents,
   entities, sessions, lifecycle, traces, principals, scopes and keys.
@@ -54,10 +54,10 @@ packages: .
 source-repository-package
   type: git
   location: https://github.com/surrealdb/surrealdb.haskell
-  subdir: surrealdb surrealdb-spectron
+  subdir: surrealdb surrealdb-memory
 ```
 
-Then add `surrealdb` (and optionally `surrealdb-spectron`) to the
+Then add `surrealdb` (and optionally `surrealdb-memory`) to the
 `build-depends` of your component.
 
 With stack, add them under `extra-deps` in `stack.yaml`:
@@ -68,7 +68,7 @@ extra-deps:
     commit: <commit-sha>
     subdirs:
       - surrealdb
-      - surrealdb-spectron
+      - surrealdb-memory
 ```
 
 The project builds with GHC 9.4 and 9.6.
@@ -141,17 +141,17 @@ runSurreal db $ withTransaction $ do
 
 `withTransaction` commits on success and cancels if the action throws.
 
-## Usage: Spectron
+## Usage: Agent Memory
 
 ```haskell
 {-# LANGUAGE OverloadedStrings #-}
 
-import Spectron
+import AgentMemory
 
 main :: IO ()
 main = do
-  client <- newSpectron
-    (defaultSpectronOptions "acme-prod" "sk_your_api_key" "https://api.spectron.surrealdb.com")
+  client <- newAgentMemory
+    (defaultAgentMemoryOptions "acme-prod" "sk_your_api_key" "https://api.spectron.surrealdb.com")
 
   -- Store a memory.
   _ <- remember client "Alice moved to Berlin" defaultRememberOptions
@@ -181,7 +181,7 @@ a codec failure (`CodecErr`), a value that did not fit your Haskell type
 (`DecodeErr`), or an operation the transport does not support
 (`UnsupportedByTransport`, for example a live query over HTTP).
 
-The Spectron client throws `SpectronError`, classified by HTTP status into kinds
+The Agent Memory client throws `AgentMemoryError`, classified by HTTP status into kinds
 such as `AuthFailed`, `ScopeRejected`, `RateLimited` and `ServerFailed`.
 
 ## Development
