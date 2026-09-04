@@ -151,7 +151,7 @@ import AgentMemory
 main :: IO ()
 main = do
   client <- newAgentMemory
-    (defaultAgentMemoryOptions "acme-prod" "sk_your_api_key" "https://api.spectron.surrealdb.com")
+    (defaultAgentMemoryOptions "acme-prod" "sk_your_api_key" "https://api.memory.example")
 
   -- Store a memory.
   _ <- remember client "Alice moved to Berlin" defaultRememberOptions

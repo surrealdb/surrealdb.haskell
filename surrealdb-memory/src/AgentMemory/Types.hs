@@ -47,7 +47,7 @@ data AgentMemoryOptions = AgentMemoryOptions
   , soApiKey     :: !Text
     -- ^ The bearer token. Required.
   , soEndpoint   :: !Text
-    -- ^ The base URL, for example @https:\/\/api.spectron.surrealdb.com@.
+    -- ^ The base URL, for example @https:\/\/api.memory.example@.
   , soTimeout    :: !Int
     -- ^ Per request timeout in microseconds.
   , soMaxRetries :: !Int

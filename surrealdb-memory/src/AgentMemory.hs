@@ -8,7 +8,7 @@
 -- >
 -- > main :: IO ()
 -- > main = do
--- >   client <- newAgentMemory (defaultAgentMemoryOptions "acme-prod" "sk_..." "https://api.spectron.surrealdb.com")
+-- >   client <- newAgentMemory (defaultAgentMemoryOptions "acme-prod" "sk_..." "https://api.memory.example")
 -- >   _ <- remember client "Alice moved to Berlin" defaultRememberOptions
 -- >   answer <- recall client "Where does Alice live?" defaultRecallOptions
 -- >   print answer
