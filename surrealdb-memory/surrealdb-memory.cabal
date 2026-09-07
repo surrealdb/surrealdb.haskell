@@ -1,10 +1,10 @@
 cabal-version:      2.4
-name:               surrealdb-spectron
+name:               surrealdb-memory
 version:            0.1.0.0
-synopsis:           Spectron client for Haskell
+synopsis:           Agent Memory client for Haskell
 description:
-  A Haskell client for SurrealDB's Spectron memory and knowledge platform. It
-  mirrors the official @\@surrealdb/spectron@ JavaScript client and exposes the
+  A Haskell client for SurrealDB's Agent Memory knowledge platform. It
+  mirrors the official @\@surrealdb/memory@ JavaScript client and exposes the
   memory operations (remember, recall, context, reflect, forget) along with the
   chat loop and the documents, entities, sessions, lifecycle, traces,
   principals, scopes and keys namespaces.
@@ -27,14 +27,14 @@ library
   hs-source-dirs:   src
   default-language: Haskell2010
   exposed-modules:
-    Spectron
-    Spectron.Chat
-    Spectron.Client
-    Spectron.Error
-    Spectron.Memory
-    Spectron.Namespaces
-    Spectron.Status
-    Spectron.Types
+    AgentMemory
+    AgentMemory.Chat
+    AgentMemory.Client
+    AgentMemory.Error
+    AgentMemory.Memory
+    AgentMemory.Namespaces
+    AgentMemory.Status
+    AgentMemory.Types
   build-depends:
     , aeson              >=2.0   && <2.3
     , base               >=4.16  && <5
@@ -49,19 +49,19 @@ library
     , time               >=1.11  && <1.15
     , unordered-containers >=0.2 && <0.3
 
-test-suite surrealdb-spectron-test
+test-suite surrealdb-memory-test
   import:           warnings
   type:             exitcode-stdio-1.0
   hs-source-dirs:   test
   main-is:          Main.hs
   default-language: Haskell2010
   other-modules:
-    Spectron.CodecSpec
+    AgentMemory.CodecSpec
   build-depends:
     , aeson
     , base
     , bytestring
-    , surrealdb-spectron
+    , surrealdb-memory
     , tasty              >=1.4  && <1.6
     , tasty-hunit        >=0.10 && <0.11
     , text

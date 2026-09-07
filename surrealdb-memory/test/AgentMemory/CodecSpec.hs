@@ -1,18 +1,18 @@
 {-# LANGUAGE OverloadedStrings #-}
 
--- | Pure tests for the Spectron request encoding and error classification. No
+-- | Pure tests for the Agent Memory request encoding and error classification. No
 -- server is required.
-module Spectron.CodecSpec (tests) where
+module AgentMemory.CodecSpec (tests) where
 
 import           Data.Aeson       (encode, toJSON)
 import           Test.Tasty
 import           Test.Tasty.HUnit
 
-import           Spectron.Error
-import           Spectron.Types
+import           AgentMemory.Error
+import           AgentMemory.Types
 
 tests :: TestTree
-tests = testGroup "Spectron"
+tests = testGroup "AgentMemory"
   [ testCase "scope normalises empties and duplicates" $
       normaliseScope (Scope [["team/eng", ""], [], ["team/eng"]])
         @?= Scope [["team/eng"]]

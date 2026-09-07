@@ -1,9 +1,9 @@
 {-# LANGUAGE OverloadedStrings #-}
 
--- | The Spectron error type. HTTP problem responses are mapped to a kind so
+-- | The Agent Memory error type. HTTP problem responses are mapped to a kind so
 -- callers can branch on the failure mode.
-module Spectron.Error
-  ( SpectronError (..)
+module AgentMemory.Error
+  ( AgentMemoryError (..)
   , ErrorKind (..)
   , classifyStatus
   ) where
@@ -11,15 +11,15 @@ module Spectron.Error
 import           Control.Exception (Exception)
 import           Data.Text         (Text)
 
--- | An error returned by the Spectron API or raised while talking to it.
-data SpectronError = SpectronError
+-- | An error returned by the Agent Memory API or raised while talking to it.
+data AgentMemoryError = AgentMemoryError
   { seStatus :: !Int
   , seKind   :: !ErrorKind
   , seTitle  :: !Text
   , seDetail :: !(Maybe Text)
   } deriving (Eq, Show)
 
-instance Exception SpectronError
+instance Exception AgentMemoryError
 
 -- | The classified failure mode.
 data ErrorKind

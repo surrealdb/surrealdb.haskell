@@ -2,7 +2,7 @@
 
 -- | The chat loop. 'chat' returns the full response; 'chatStream' fetches the
 -- server sent event stream and parses it into chunks.
-module Spectron.Chat
+module AgentMemory.Chat
   ( ChatOptions (..)
   , defaultChatOptions
   , chat
@@ -19,8 +19,8 @@ import           Data.Text              (Text)
 import qualified Data.Text              as T
 import qualified Data.Text.Encoding     as TE
 
-import           Spectron.Client
-import           Spectron.Types
+import           AgentMemory.Client
+import           AgentMemory.Types
 
 -- | Options for 'chat'.
 data ChatOptions = ChatOptions
@@ -40,7 +40,7 @@ chatBody message opts = objectMaybe
   ]
 
 -- | Send a chat message and return the full response.
-chat :: MonadIO m => Spectron -> Text -> ChatOptions -> m Value
+chat :: MonadIO m => AgentMemory -> Text -> ChatOptions -> m Value
 chat sp message opts = postJSON sp (contextPath sp "/chat") [] (chatBody message opts)
 
 -- | One frame of a streamed chat response.
@@ -53,7 +53,7 @@ data ChatChunk = ChatChunk
 
 -- | Send a chat message and stream the response as parsed chunks. The full
 -- stream is read, then parsed; streaming endpoints are not retried.
-chatStream :: MonadIO m => Spectron -> Text -> ChatOptions -> m [ChatChunk]
+chatStream :: MonadIO m => AgentMemory -> Text -> ChatOptions -> m [ChatChunk]
 chatStream sp message opts = liftIO $ do
   body <- rawRequest sp "POST" (contextPath sp "/chat") [("stream", Just "true")] (Just (chatBody message opts))
   pure (parseSse (TE.decodeUtf8 (BL.toStrict body)))

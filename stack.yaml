@@ -4,7 +4,7 @@ resolver: lts-22.43
 
 packages:
   - surrealdb
-  - surrealdb-spectron
+  - surrealdb-memory
 
 # All dependencies below are available from the resolver snapshot, so no
 # extra-deps are required. Add pins here if you bump to a newer GHC.
